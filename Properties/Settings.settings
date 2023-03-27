@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="txtReader.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="width" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">345</Value>
+    </Setting>
+    <Setting Name="height" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">345</Value>
+    </Setting>
+    <Setting Name="reader_width" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">770</Value>
+    </Setting>
+    <Setting Name="reader_height" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">570</Value>
+    </Setting>
+    <Setting Name="display_title" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="title_rule" Type="System.String" Scope="User">
+      <Value Profile="(Default)">^(\s*?)[第（][一二三四五六七八九十0-9]{1,7}[章回卷）]</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

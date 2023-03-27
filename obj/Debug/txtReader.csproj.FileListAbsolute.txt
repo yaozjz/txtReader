@@ -1,0 +1,11 @@
+D:\project\programe\Csharp\test\txtReader\bin\Debug\txtReader.exe.config
+D:\project\programe\Csharp\test\txtReader\bin\Debug\txtReader.exe
+D:\project\programe\Csharp\test\txtReader\bin\Debug\txtReader.pdb
+D:\project\programe\Csharp\test\txtReader\obj\Debug\txtReader.csproj.AssemblyReference.cache
+D:\project\programe\Csharp\test\txtReader\obj\Debug\txtReader.Form1.resources
+D:\project\programe\Csharp\test\txtReader\obj\Debug\txtReader.Properties.Resources.resources
+D:\project\programe\Csharp\test\txtReader\obj\Debug\txtReader.csproj.GenerateResource.cache
+D:\project\programe\Csharp\test\txtReader\obj\Debug\txtReader.csproj.CoreCompileInputs.cache
+D:\project\programe\Csharp\test\txtReader\obj\Debug\txtReader.exe
+D:\project\programe\Csharp\test\txtReader\obj\Debug\txtReader.pdb
+D:\project\programe\Csharp\test\txtReader\obj\Debug\txtReader.ReaderForm.resources
