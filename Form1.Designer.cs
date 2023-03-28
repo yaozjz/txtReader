@@ -33,18 +33,18 @@ namespace txtReader
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Exit = new System.Windows.Forms.ToolStripMenuItem();
-            this.AddNovel = new System.Windows.Forms.ToolStripMenuItem();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.About = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveList = new System.Windows.Forms.ToolStripMenuItem();
             this.FreshList = new System.Windows.Forms.ToolStripMenuItem();
+            this.AddNovel = new System.Windows.Forms.ToolStripMenuItem();
+            this.Exit = new System.Windows.Forms.ToolStripMenuItem();
+            this.AboutForm = new System.Windows.Forms.ToolStripMenuItem();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.NovelPath = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Path = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.WeiZhi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SaveList = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.DeleteRows = new System.Windows.Forms.ToolStripMenuItem();
             this.添加ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DeleteRows = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -54,7 +54,7 @@ namespace txtReader
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.文件ToolStripMenuItem,
-            this.About});
+            this.AboutForm});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 3, 0, 3);
@@ -73,19 +73,40 @@ namespace txtReader
             this.文件ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.文件ToolStripMenuItem.Text = "文件";
             // 
-            // Exit
+            // SaveList
             // 
-            this.Exit.Name = "Exit";
-            this.Exit.Size = new System.Drawing.Size(180, 22);
-            this.Exit.Text = "退出";
-            this.Exit.Click += new System.EventHandler(this.Exit_Click);
+            this.SaveList.Name = "SaveList";
+            this.SaveList.Size = new System.Drawing.Size(100, 22);
+            this.SaveList.Text = "保存";
+            this.SaveList.Click += new System.EventHandler(this.SaveList_Click);
+            // 
+            // FreshList
+            // 
+            this.FreshList.Name = "FreshList";
+            this.FreshList.Size = new System.Drawing.Size(100, 22);
+            this.FreshList.Text = "刷新";
+            this.FreshList.Click += new System.EventHandler(this.FreshList_Click);
             // 
             // AddNovel
             // 
             this.AddNovel.Name = "AddNovel";
-            this.AddNovel.Size = new System.Drawing.Size(180, 22);
+            this.AddNovel.Size = new System.Drawing.Size(100, 22);
             this.AddNovel.Text = "添加";
             this.AddNovel.Click += new System.EventHandler(this.AddNovel_Click);
+            // 
+            // Exit
+            // 
+            this.Exit.Name = "Exit";
+            this.Exit.Size = new System.Drawing.Size(100, 22);
+            this.Exit.Text = "退出";
+            this.Exit.Click += new System.EventHandler(this.Exit_Click);
+            // 
+            // AboutForm
+            // 
+            this.AboutForm.Name = "AboutForm";
+            this.AboutForm.Size = new System.Drawing.Size(44, 21);
+            this.AboutForm.Text = "关于";
+            this.AboutForm.Click += new System.EventHandler(this.About_Click);
             // 
             // dataGridView1
             // 
@@ -109,19 +130,6 @@ namespace txtReader
             this.dataGridView1.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseDoubleClick);
             this.dataGridView1.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseUp);
             // 
-            // About
-            // 
-            this.About.Name = "About";
-            this.About.Size = new System.Drawing.Size(44, 21);
-            this.About.Text = "关于";
-            // 
-            // FreshList
-            // 
-            this.FreshList.Name = "FreshList";
-            this.FreshList.Size = new System.Drawing.Size(180, 22);
-            this.FreshList.Text = "刷新";
-            this.FreshList.Click += new System.EventHandler(this.FreshList_Click);
-            // 
             // NovelPath
             // 
             this.NovelPath.FillWeight = 70F;
@@ -142,13 +150,6 @@ namespace txtReader
             this.WeiZhi.Name = "WeiZhi";
             this.WeiZhi.ReadOnly = true;
             // 
-            // SaveList
-            // 
-            this.SaveList.Name = "SaveList";
-            this.SaveList.Size = new System.Drawing.Size(180, 22);
-            this.SaveList.Text = "保存";
-            this.SaveList.Click += new System.EventHandler(this.SaveList_Click);
-            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -157,19 +158,19 @@ namespace txtReader
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(101, 48);
             // 
-            // DeleteRows
-            // 
-            this.DeleteRows.Name = "DeleteRows";
-            this.DeleteRows.Size = new System.Drawing.Size(100, 22);
-            this.DeleteRows.Text = "删除";
-            this.DeleteRows.Click += new System.EventHandler(this.DeleteRows_Click);
-            // 
             // 添加ToolStripMenuItem
             // 
             this.添加ToolStripMenuItem.Name = "添加ToolStripMenuItem";
             this.添加ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.添加ToolStripMenuItem.Text = "添加";
             this.添加ToolStripMenuItem.Click += new System.EventHandler(this.AddNovel_Click);
+            // 
+            // DeleteRows
+            // 
+            this.DeleteRows.Name = "DeleteRows";
+            this.DeleteRows.Size = new System.Drawing.Size(100, 22);
+            this.DeleteRows.Text = "删除";
+            this.DeleteRows.Click += new System.EventHandler(this.DeleteRows_Click);
             // 
             // Form1
             // 
@@ -202,7 +203,7 @@ namespace txtReader
         private System.Windows.Forms.ToolStripMenuItem 文件ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Exit;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.ToolStripMenuItem About;
+        private System.Windows.Forms.ToolStripMenuItem AboutForm;
         private System.Windows.Forms.ToolStripMenuItem AddNovel;
         private System.Windows.Forms.ToolStripMenuItem FreshList;
         private System.Windows.Forms.DataGridViewTextBoxColumn NovelPath;

@@ -19,7 +19,7 @@ namespace txtReader
         }
         private void Exit_Click(object sender, EventArgs e)
         {
-            Environment.Exit(0);
+            Close();
         }
         //关闭保存
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -36,6 +36,22 @@ namespace txtReader
         private string config_txt = "./lib/sql.txt";
         private int index = -1;
         //=========常用函数
+        private void CreatDir(string path)
+        {
+            //检查文件夹结构
+            if (!Directory.Exists(path))
+            {
+                try
+                {
+                    //不存在文件夹则创建
+                    Directory.CreateDirectory(path);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
         private void SaveBooks()
         {
             try
@@ -71,12 +87,14 @@ namespace txtReader
         }
         private void ShowList(string Str1, string Str2, string Str3)
         {
-            string[] msg = { Str1, Str2 , Str3};
+            string[] msg = { Str1, Str2, Str3 };
             dataGridView1.Rows.Add(msg);
         }
-
+        //书籍信息配置文件
         private void PrintBooks()
         {
+            //检查文件夹结构,不存在则创建
+            CreatDir(libPath);
             dataGridView1.Rows.Clear();
             //string[] files = Directory.GetFiles(@"./lib/books/", "*.txt");
             //foreach (string name in files)
@@ -100,7 +118,7 @@ namespace txtReader
             }
             catch
             {
-                MessageBox.Show("配置文件不完整！");
+                MessageBox.Show("配置文件不完整！请点击保存键创建。");
             }
         }
 
@@ -113,7 +131,7 @@ namespace txtReader
         //双击打开
         private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if(e.RowIndex > -1)
+            if (e.RowIndex > -1)
             {
                 //获取行数
                 int select_index = dataGridView1.CurrentRow.Index;
@@ -122,15 +140,23 @@ namespace txtReader
                 string readline = _selection.Cells[2].Value.ToString();
                 ReaderForm reader = new ReaderForm(novel_path, int.Parse(readline));
                 this.Hide();
-                reader.ShowDialog();
+                DialogResult quest = reader.ShowDialog();
                 this.Show();
                 _selection.Cells[2].Value = reader.scrol_index;
                 reader.Dispose();
+                //直接退出整个程序
+                if (quest == DialogResult.OK)
+                    Exit_Click(sender, e);
             }
         }
         //添加数据
         private void AddNovel_Click(object sender, EventArgs e)
         {
+            //书籍保存路径
+            string books_path = libPath + "books/";
+            //检查文件夹结构,不存在则创建
+            CreatDir(books_path);
+            //打开窗口
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.FileName = "文本文件";
             dlg.DefaultExt = ".txt";
@@ -140,7 +166,8 @@ namespace txtReader
                 string novel_path = dlg.FileName;
                 string novel_name = System.IO.Path.GetFileNameWithoutExtension(novel_path);
                 FileInfo f1 = new FileInfo(novel_path);
-                string f2_name = libPath + "books/" + novel_name + ".txt";
+                string f2_name = books_path + novel_name + ".txt";
+                //检查保存路径是否存在，否则创建文件夹
                 try
                 {
                     f1.CopyTo(f2_name);
@@ -168,7 +195,7 @@ namespace txtReader
                 string file_path = dataGridView1.Rows[index].Cells[1].Value.ToString();
                 FileInfo f = new FileInfo(file_path);
                 f.Delete();
-                dataGridView1.Rows.RemoveAt(index);                
+                dataGridView1.Rows.RemoveAt(index);
             }
         }
         //右键菜单
@@ -182,6 +209,13 @@ namespace txtReader
                 contextMenuStrip1.Show(dataGridView1, e.Location);
                 contextMenuStrip1.Show(Cursor.Position);
             }
+        }
+        //关于
+        private void About_Click(object sender, EventArgs e)
+        {
+            About ab = new About();
+            ab.ShowDialog();
+            ab.Dispose();
         }
     }
 }

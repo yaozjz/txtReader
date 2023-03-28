@@ -79,14 +79,15 @@ namespace txtReader
             // GetTitle
             // 
             this.GetTitle.Name = "GetTitle";
-            this.GetTitle.Size = new System.Drawing.Size(124, 22);
+            this.GetTitle.Size = new System.Drawing.Size(180, 22);
             this.GetTitle.Text = "获取章节";
             this.GetTitle.Click += new System.EventHandler(this.GetTitle_Click);
             // 
             // Exit
             // 
             this.Exit.Name = "Exit";
-            this.Exit.Size = new System.Drawing.Size(124, 22);
+            this.Exit.ShortcutKeys = System.Windows.Forms.Keys.F12;
+            this.Exit.Size = new System.Drawing.Size(180, 22);
             this.Exit.Text = "退出";
             this.Exit.Click += new System.EventHandler(this.Exit_Click);
             // 
@@ -229,12 +230,14 @@ namespace txtReader
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "ReaderForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "记事本";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ReaderForm_FormClosing);
             this.Load += new System.EventHandler(this.ReaderForm_Load);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ReaderForm_KeyUp);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);

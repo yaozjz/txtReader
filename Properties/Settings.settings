@@ -20,5 +20,8 @@
     <Setting Name="title_rule" Type="System.String" Scope="User">
       <Value Profile="(Default)">^(\s*?)[第（][一二三四五六七八九十0-9]{1,7}[章回卷）]</Value>
     </Setting>
+    <Setting Name="FontSet" Type="System.Drawing.Font" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

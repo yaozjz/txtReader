@@ -9,3 +9,4 @@ D:\project\programe\Csharp\test\txtReader\obj\Debug\txtReader.csproj.CoreCompile
 D:\project\programe\Csharp\test\txtReader\obj\Debug\txtReader.exe
 D:\project\programe\Csharp\test\txtReader\obj\Debug\txtReader.pdb
 D:\project\programe\Csharp\test\txtReader\obj\Debug\txtReader.ReaderForm.resources
+D:\project\programe\Csharp\test\txtReader\obj\Debug\txtReader.About.resources

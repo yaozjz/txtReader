@@ -21,6 +21,12 @@ namespace txtReader
             //打开文件
             scrol_index = weizhi;
             OpenFile(FilePath);
+            //字体
+            try
+            {
+                NovelShow.Font = Properties.Settings.Default.FontSet;
+            }
+            catch { }
         }
         //隐藏状态
         private void unDisplayTitle_Click(object sender, EventArgs e)
@@ -33,27 +39,33 @@ namespace txtReader
         [DllImport("user32.dll")]
         private static extern int GetScrollPos(IntPtr hWnd, Int32 nBar);
         [DllImport("user32.dll")]
-        private static extern int SetScrollPos(IntPtr hWnd, Int32 nBar, Int32 nPos, bool bRedraw);
-        [DllImport("user32.dll")]
         private static extern bool GetScrollRange(IntPtr hWnd, int nBar, out int lpMinPos, out int lpMaxPos);
         int scrollRange = 0;
         int lineHeight = 0;
         public int scrol_index = 0;
         private void GetScrol()
         {
-            int min, max;
-            if (GetScrollRange(NovelShow.Handle, 1, out min, out max))
+            try
             {
-                scrollRange = max - min;
-                lineHeight = scrollRange / NovelShow.Lines.Length;
+                int min, max;
+                if (GetScrollRange(NovelShow.Handle, 1, out min, out max))
+                {
+                    scrollRange = max - min;
+                    lineHeight = scrollRange / NovelShow.Lines.Length;
+                }
             }
+            catch (Exception ex) { MessageBox.Show("滚动条计算出错。" + ex.Message); }
         }
         private int GetIndex()
         {
-            int pos = GetScrollPos(NovelShow.Handle, 1);
-            int line = (int)(pos / (lineHeight));
-            int index = NovelShow.GetFirstCharIndexFromLine(line);
-            return index;
+            try
+            {
+                int pos = GetScrollPos(NovelShow.Handle, 1);
+                int line = (int)(pos / (lineHeight));
+                int index = NovelShow.GetFirstCharIndexFromLine(line);
+                return index;
+            }
+            catch { return NovelShow.SelectionStart; }
         }
         //=======
         /////文件打开
@@ -105,7 +117,7 @@ namespace txtReader
         //退出
         private void Exit_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
+            this.DialogResult = DialogResult.Cancel;
         }
         //获取章节
         private void GetTitle_Click(object sender, EventArgs e)
@@ -127,7 +139,7 @@ namespace txtReader
         }
         //加载项
         private void ReaderForm_Load(object sender, EventArgs e)
-        {            
+        {
             fresh_index();
             get_font_set();
             GetScrol();
@@ -185,9 +197,18 @@ namespace txtReader
             Properties.Settings.Default.reader_width = Size.Width;
             Properties.Settings.Default.reader_height = Size.Height;
             Properties.Settings.Default.display_title = unDisplayTitle.Checked;
+            Properties.Settings.Default.FontSet = NovelShow.Font;
             Properties.Settings.Default.Save();
             //scrol_index = NovelShow.SelectionStart;
             scrol_index = GetIndex();
+        }
+
+        private void ReaderForm_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.DialogResult = DialogResult.OK;
+            }
         }
         //
     }

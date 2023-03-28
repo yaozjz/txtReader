@@ -94,5 +94,16 @@ namespace txtReader.Properties {
                 this["title_rule"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Drawing.Font FontSet {
+            get {
+                return ((global::System.Drawing.Font)(this["FontSet"]));
+            }
+            set {
+                this["FontSet"] = value;
+            }
+        }
     }
 }
