@@ -21,8 +21,6 @@ namespace txtReader
             //打开文件
             scrol_index = weizhi;
             OpenFile(FilePath);
-            fresh_index();
-            GetScrol();
         }
         //隐藏状态
         private void unDisplayTitle_Click(object sender, EventArgs e)
@@ -50,13 +48,20 @@ namespace txtReader
                 lineHeight = scrollRange / NovelShow.Lines.Length;
             }
         }
+        private int GetIndex()
+        {
+            int pos = GetScrollPos(NovelShow.Handle, 1);
+            int line = (int)(pos / (lineHeight));
+            int index = NovelShow.GetFirstCharIndexFromLine(line);
+            return index;
+        }
         //=======
         /////文件打开
         private void OpenFile(string FilePath)
         {
             Encoding ecode = TextFormat.GetTextFileEncodingType(FilePath);
-            //try
-            //{
+            try
+            {
                 FileStream fs = new FileStream(FilePath, FileMode.Open, FileAccess.Read);
                 StreamReader sr = new StreamReader(fs, Encoding.GetEncoding(ecode.BodyName));
 
@@ -71,17 +76,13 @@ namespace txtReader
                 sb.Clear();
                 sr.Close();
                 fs.Close();
-                if (NovelShow.WordWrap)
-                    NovelShow.WordWrap = false;
                 NovelShow.SelectionStart = scrol_index;
-                //如果之前是开启了自动换行，则此时应该将变换状态转换回去
-                NovelShow.WordWrap = true;
                 NovelShow.ScrollToCaret();
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("发生错误：" + ex.Message);
-            //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("发生错误：" + ex.Message);
+            }
         }
         //章节显示
         private void AddTitle(int line_index, string ttName)
@@ -123,6 +124,13 @@ namespace txtReader
                 }
                 i++;
             }
+        }
+        //加载项
+        private void ReaderForm_Load(object sender, EventArgs e)
+        {            
+            fresh_index();
+            get_font_set();
+            GetScrol();
         }
         //字体设置
         private void FontSet_Click(object sender, EventArgs e)
@@ -178,10 +186,9 @@ namespace txtReader
             Properties.Settings.Default.reader_height = Size.Height;
             Properties.Settings.Default.display_title = unDisplayTitle.Checked;
             Properties.Settings.Default.Save();
-            scrol_index = NovelShow.SelectionStart;
+            //scrol_index = NovelShow.SelectionStart;
+            scrol_index = GetIndex();
         }
-
-
         //
     }
 }

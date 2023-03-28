@@ -218,7 +218,6 @@ namespace txtReader
             this.NovelShow.Size = new System.Drawing.Size(560, 484);
             this.NovelShow.TabIndex = 0;
             this.NovelShow.Text = "";
-            this.NovelShow.WordWrap = false;
             this.NovelShow.SelectionChanged += new System.EventHandler(this.NovelShow_SelectionChanged);
             // 
             // ReaderForm
@@ -235,6 +234,7 @@ namespace txtReader
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "记事本";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ReaderForm_FormClosing);
+            this.Load += new System.EventHandler(this.ReaderForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
